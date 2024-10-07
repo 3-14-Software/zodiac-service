@@ -43,4 +43,23 @@ public class WesternZodiacService implements IZodiacService {
 		return birthMonthDay.isBefore(MonthDay.of(3, 21)) ? ZodiacSign.PISCES.name() : ZodiacSign.CAPRICORN.name();
 	}
 
+	@Override
+	public String getEmoji(String sign) {
+		return switch (sign) {
+			case "ARIES"->"♈";
+			case "TAURUS"->"♉";
+			case "GEMINI"->"♊";
+			case "CANCER"->"♋";
+			case "LEO"->"♌";
+			case "VIRGO"->"♍";
+			case "LIBRA"->"♎";
+			case "SCORPIO"->"♏";
+			case "SAGITTARIUS"->"♐";
+			case "CAPRICORN"->"♑";
+			case "AQUARIUS"->"♒";
+			case "PISCES"->"♓";
+			default->"";
+		};
+	}
+
 }

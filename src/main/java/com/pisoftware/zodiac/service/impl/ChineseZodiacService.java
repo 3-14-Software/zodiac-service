@@ -20,4 +20,23 @@ public class ChineseZodiacService implements IZodiacService {
 		return ZODIAC_SIGNS.values()[zodiacIndex].name();
 	}
 
+	@Override
+	public String getEmoji(String sign) {
+		return switch (sign) {
+			case "RAT"->"🐀";
+			case "OX"->"🐂";
+			case "TIGER"->"🐅";
+			case "RABBIT"->"🐇";
+			case "DRAGON"->"🐉";
+			case "SNAKE"->"🐍";
+			case "HORSE"->"🐎";
+			case "GOAT"->"🐐";
+			case "MONKEY"->"🦧";
+			case "ROOSTER"->"🐓";
+			case "DOG"->"🐩";
+			case "PIG"->"🐖";
+			default->"";
+		};
+	}
+
 }

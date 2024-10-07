@@ -6,4 +6,6 @@ public interface IZodiacService {
 
 	String getSign(LocalDate birthday);
 
+	String getEmoji(String sign);
+
 }
