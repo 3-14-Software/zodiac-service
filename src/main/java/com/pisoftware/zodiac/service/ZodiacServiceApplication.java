@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/zodiac")
@@ -27,16 +26,24 @@ public class ZodiacServiceApplication {
 		this.westernZodiacService = westernZodiacService;
 	}
 
-	@GetMapping("/chinese")
-	public String getChineseZodiac(@RequestParam("birthdate") String birthdate,
-								   @RequestParam(value = "emoji", required = false) Optional<String> emoji) {
-		return getZodiacSign(chineseZodiacService, birthdate, emoji.isPresent());
+	@GetMapping("/chinese/{birthdate}")
+	public String getChineseZodiac(@PathVariable("birthdate") String birthdate) {
+		return getZodiacSign(chineseZodiacService, birthdate, false);
 	}
 
-	@GetMapping("/western")
-	public String getWesternZodiac(@RequestParam("birthdate") String birthdate,
-								   @RequestParam(value = "emoji", required = false) Optional<String> emoji) {
-		return getZodiacSign(westernZodiacService, birthdate, emoji.isPresent());
+	@GetMapping("/chinese/{birthdate}/emoji")
+	public String getChineseZodiacWithEmoji(@PathVariable("birthdate") String birthdate) {
+		return getZodiacSign(chineseZodiacService, birthdate, true);
+	}
+
+	@GetMapping("/western/{birthdate}")
+	public String getWesternZodiac(@PathVariable("birthdate") String birthdate) {
+		return getZodiacSign(westernZodiacService, birthdate, false);
+	}
+
+	@GetMapping("/western/{birthdate}/emoji")
+	public String getWesternZodiacWithEmoji(@PathVariable("birthdate") String birthdate) {
+		return getZodiacSign(westernZodiacService, birthdate, true);
 	}
 
 	private String getZodiacSign(IZodiacService zodiacService, String birthdate, boolean emoji) {
