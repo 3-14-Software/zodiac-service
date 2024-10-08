@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.pisoftware.zodiac</groupId>
     <artifactId>zodiac-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>zodiac-service</name>
     <description>Zodiac project's service</description>
     <url/>
