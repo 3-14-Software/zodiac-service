@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public interface IZodiacService {
 
-	String getSign(LocalDate birthday);
+	IZodiacSign getSign(LocalDate birthday);
 
-	String getEmoji(String sign);
+	String getEmoji(IZodiacSign sign);
 
 }

@@ -1,6 +1,7 @@
 package com.pisoftware.zodiac.service.impl;
 
 import com.pisoftware.zodiac.service.IZodiacService;
+import com.pisoftware.zodiac.service.IZodiacSign;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -9,56 +10,33 @@ import java.time.MonthDay;
 @Service
 public class WesternZodiacService implements IZodiacService {
 
-	private enum ZodiacSign {
-		ARIES(MonthDay.of(3, 21), MonthDay.of(4, 19)),
-		TAURUS(MonthDay.of(4, 20), MonthDay.of(5, 20)),
-		GEMINI(MonthDay.of(5, 21), MonthDay.of(6, 20)),
-		CANCER(MonthDay.of(6, 21), MonthDay.of(7, 22)),
-		LEO(MonthDay.of(7, 23), MonthDay.of(8, 22)),
-		VIRGO(MonthDay.of(8, 23), MonthDay.of(9, 22)),
-		LIBRA(MonthDay.of(9, 23), MonthDay.of(10, 22)),
-		SCORPIO(MonthDay.of(10, 23), MonthDay.of(11, 21)),
-		SAGITTARIUS(MonthDay.of(11, 22), MonthDay.of(12, 21)),
-		CAPRICORN(MonthDay.of(12, 22), MonthDay.of(1, 19)),
-		AQUARIUS(MonthDay.of(1, 20), MonthDay.of(2, 18)),
-		PISCES(MonthDay.of(2, 19), MonthDay.of(3, 20));
-
-		private final MonthDay startDate;
-		private final MonthDay endDate;
-
-		ZodiacSign(MonthDay startDate, MonthDay endDate) {
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
-	}
-
 	@Override
-	public String getSign(LocalDate birthday) {
+	public IZodiacSign getSign(LocalDate birthday) {
 		MonthDay birthMonthDay = MonthDay.from(birthday);
-		for (ZodiacSign sign : ZodiacSign.values()) {
-			if (sign.startDate.compareTo(birthMonthDay) <= 0 && sign.endDate.compareTo(birthMonthDay) >= 0) {
-				return sign.name();
+		for (WesternZodiacSign sign : WesternZodiacSign.values()) {
+			if (sign.getStartDate().compareTo(birthMonthDay) <= 0 && sign.getEndDate().compareTo(birthMonthDay) >= 0) {
+				return sign;
 			}
 		}
-		return birthMonthDay.isBefore(MonthDay.of(3, 21)) ? ZodiacSign.PISCES.name() : ZodiacSign.CAPRICORN.name();
+		return birthMonthDay.isBefore(MonthDay.of(3, 21)) ? WesternZodiacSign.PISCES : WesternZodiacSign.CAPRICORN;
 	}
 
 	@Override
-	public String getEmoji(String sign) {
+	public String getEmoji(IZodiacSign sign) {
 		return switch (sign) {
-			case "ARIES"->"♈";
-			case "TAURUS"->"♉";
-			case "GEMINI"->"♊";
-			case "CANCER"->"♋";
-			case "LEO"->"♌";
-			case "VIRGO"->"♍";
-			case "LIBRA"->"♎";
-			case "SCORPIO"->"♏";
-			case "SAGITTARIUS"->"♐";
-			case "CAPRICORN"->"♑";
-			case "AQUARIUS"->"♒";
-			case "PISCES"->"♓";
-			default->"";
+			case WesternZodiacSign.ARIES -> "♈";
+			case WesternZodiacSign.TAURUS -> "♉";
+			case WesternZodiacSign.GEMINI -> "♊";
+			case WesternZodiacSign.CANCER -> "♋";
+			case WesternZodiacSign.LEO -> "♌";
+			case WesternZodiacSign.VIRGO -> "♍";
+			case WesternZodiacSign.LIBRA -> "♎";
+			case WesternZodiacSign.SCORPIO -> "♏";
+			case WesternZodiacSign.SAGITTARIUS -> "♐";
+			case WesternZodiacSign.CAPRICORN -> "♑";
+			case WesternZodiacSign.AQUARIUS -> "♒";
+			case WesternZodiacSign.PISCES -> "♓";
+			default -> "";
 		};
 	}
 

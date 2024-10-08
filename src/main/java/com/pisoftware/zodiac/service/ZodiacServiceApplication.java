@@ -48,12 +48,12 @@ public class ZodiacServiceApplication {
 
 	private String getZodiacSign(IZodiacService zodiacService, String birthdate, boolean emoji) {
 		LocalDate birthDate = LocalDate.parse(birthdate);
-		String sign = zodiacService.getSign(birthDate);
+		IZodiacSign sign = zodiacService.getSign(birthDate);
 
 		if (emoji) {
-			sign = zodiacService.getEmoji(sign);
+			return zodiacService.getEmoji(sign);
 		}
-		return sign;
+		return sign.getName();
 	}
 
 	public static void main(String[] args) {
