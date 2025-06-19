@@ -1,0 +1,10 @@
+.idea
+
+*.log
+.DS_Store
+Thumbs.db
+
+target/classes
+target/generated-sources
+target/maven-*
+target/*.original

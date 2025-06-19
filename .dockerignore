@@ -1,0 +1,3 @@
+*
+!target/zodiac-service-*.jar
+!Dockerfile

@@ -1,6 +1,0 @@
-[phases.setup]
-nixPkgs = ["jdk21", "maven"]
-
-[variables]
-JAVA_HOME = "/nix/var/nix/profiles/default"  # valeur sûre sous Nix
-JAVA_VERSION = "21"
